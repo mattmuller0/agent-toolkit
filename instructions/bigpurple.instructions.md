@@ -8,7 +8,7 @@ This guide defines the standard operating procedures for running analysis code o
 - **Scheduler**: SLURM Workload Manager
 - **User Identity**: `$USER`
 - **Lab Base Paths**: `/gpfs/data/bergerlab/$USER`
-- **Lab Base Paths**: `/gpfs/data/ischemialab/workspace/muller`
+- **Lab Base Paths**: `/gpfs/data/ischemialab/workspace/$USER`
 - **Lab Base Paths**: `/gpfs/data/ruggleslab/$USER`
 
 ## Environment Configuration
@@ -35,8 +35,8 @@ Use these **absolute paths** for all code execution. Do not use `python` or `Rsc
   ```
 
 ### 3. Conda Environment (Reference)
-- **Base Path**: `/gpfs/data/bergerlab/$USER/${USER}_miniconda`
-- **Activation**: `source /gpfs/data/bergerlab/$USER/${USER}_miniconda/etc/profile.d/conda.sh`
+- **Base Path**: `/gpfs/data/ruggleslab/$USER/${USER}_miniconda`
+- **Activation**: `source /gpfs/data/ruggleslab/$USER/${USER}_miniconda/etc/profile.d/conda.sh`
 - **Default Env**: `r`
 
 ## Repository Standards
@@ -61,7 +61,7 @@ For debugging, data exploration, or tasks under 10 minutes, run directly on the 
 /gpfs/data/ruggleslab/$USER/conda_envs/r/bin/Rscript src/my_script.R
 
 # Python Example
-/gpfs/data/bergerlab/$USER/${USER}_miniconda/envs/main/bin/python src/my_script.py
+/gpfs/data/ruggleslab/$USER/${USER}_miniconda/envs/main/bin/python src/my_script.py
 ```
 
 ### Batch Execution (Production)
