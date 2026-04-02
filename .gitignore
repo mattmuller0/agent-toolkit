@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Editor settings and temp files
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Python cache and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
