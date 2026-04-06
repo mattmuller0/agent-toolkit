@@ -7,7 +7,7 @@ This guide defines the standard operating procedures for running analysis code o
 - **OS**: Linux (RHEL/CentOS compatible)
 - **Scheduler**: SLURM Workload Manager
 - **User Identity**: `$USER`
-- **Lab Base Paths**: `/gpfs/data/bergerlab/$USER`
+- **Lab Base Paths**: `/gpfs/data/ruggleslab/$USER`
 - **Lab Base Paths**: `/gpfs/data/ischemialab/workspace/$USER`
 - **Lab Base Paths**: `/gpfs/data/ruggleslab/$USER`
 
@@ -31,7 +31,7 @@ Use these **absolute paths** for all code execution. Do not use `python` or `Rsc
   ```
 - **Python**:
   ```bash
-  /gpfs/data/bergerlab/$USER/${USER}_miniconda/envs/main/bin/python
+  /gpfs/data/ruggleslab/$USER/${USER}_miniconda/envs/main/bin/python
   ```
 
 ### 3. Conda Environment (Reference)
