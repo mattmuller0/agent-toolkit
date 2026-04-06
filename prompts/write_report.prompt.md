@@ -39,13 +39,15 @@ A short plain-language table or bulleted list covering:
 - Any reference databases or prior networks used
 
 ### 3. Approach
-One short paragraph per major analysis step or pipeline stage, described in plain language. Focus on **what** was done and **why**, not **how** (no function names, package names, or code). Include the logic behind key design choices (e.g., why two comparison groups, why a particular filtering threshold matters biologically).
+One short paragraph per major analysis step or pipeline stage, described in plain language. Focus on **what** was done and **why**. Avoid raw code and file paths, but established tool names (e.g., DESeq2, GSEA, MOFA) may be used when they are widely recognized in the field. Include the logic behind key design choices (e.g., why two comparison groups, why a particular filtering threshold matters biologically).
 
 ### 4. Key Results
 Summarize findings organized by the main analysis outputs or biological questions. For each:
 - What was found (top hits, clusters, signatures, interactions, etc.)
 - Whether results were strong, weak, or pending (be honest about preliminary status)
 - Any notable biological interpretation — flag it clearly as interpretation vs. observation
+
+If multiple comparisons or conditions were tested, organize results by comparison/condition — not by analysis step. Lead with the finding most relevant to the biological question.
 
 If results files are not yet available, state that the pipeline is pending and describe what outputs will be generated.
 
@@ -64,12 +66,23 @@ Pull file names from the actual output directories in the workspace. Group by ty
 - What follow-up experiments or validation steps could be prioritized
 - What additional computational analyses are planned or would strengthen the conclusions
 
-### 7. Methods (brief)
+### 7. Caveats (optional — include when relevant)
+1–3 bullets flagging known limitations of the current analysis:
+- Sample size constraints or imbalanced groups
+- Batch effects that were controlled for but may still influence results
+- Missing data or incomplete pipelines
+- Any comparisons that should be interpreted with caution
+
+Omit this section if there are no material limitations to flag.
+
+### 8. Methods (brief)
 One short paragraph suitable for inclusion in a Methods section or grant. Cover:
 - Core analytical framework/tool(s) used and their purpose
 - Statistical tests and thresholds applied (e.g., DE method, FDR cutoff, fold-change threshold)
 - Key filtering criteria and why they matter
 - Any quality control steps performed
+
+Always include: (1) multiple testing correction method and threshold (e.g., Benjamini-Hochberg FDR < 0.05), (2) normalization strategy, (3) genome assembly or database version where applicable.
 
 Write this paragraph in past tense, third person, as it would appear in a manuscript.
 

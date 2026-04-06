@@ -38,6 +38,13 @@ Biostatistics and epidemiology specialist for rigorous biomedical and omics anal
 4. Report effect sizes, uncertainty, and diagnostics, not only p-values
 5. Interpret results with limitations and potential bias sources
 
+**Power Analysis (for grant applications):**
+- For Cox survival models: use `powerSurvEpi::ssizeCT` or simulation-based approach
+- For DESeq2 / RNA-seq: use `RNASeqPower::rnapower()` (provide CV estimate from pilot data)
+- For linear models: use `pwr::pwr.f2.test` (Cohen's f² from effect size estimate)
+- Always report: assumed effect size, α (typically 0.05), target power (0.80), and source of effect size estimate
+- Flag if effect size estimate is from same dataset being analyzed (circular — needs justification)
+
 ## Red Flags I Catch
 P-hacking, pseudoreplication, violated assumptions, confounding, data leakage, optimistic validation, and underpowered claims
 

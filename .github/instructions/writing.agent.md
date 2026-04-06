@@ -1,0 +1,1 @@
+/Users/muller/Documents/agent-toolkit/agents/writing.agent.md

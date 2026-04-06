@@ -49,6 +49,19 @@ Pipelines: Checkpointed, logged, containerized per step
 4. Optimize for readability first, then performance
 5. Prepare changes for independent review
 
+## rmatt & HPC Conventions
+
+**rmatt conventions:**
+- Use skills in `skills/rmatt/skills/` as the primary procedural guide before writing custom code
+- When a skill exists for the task (deseq, enrichment, hazard-ratios, multiomics-integration), follow it — do not reinvent
+- For novel rmatt functions, check `?function_name` documentation first; use `rmatt::` prefix explicitly
+
+**BigPurple job submission patterns:**
+- Use `instructions/bigpurple.instructions.md` for all HPC execution
+- Default partition: `cpu_medium` (64GB, 24h, 4 CPUs) for production; `cpu_short` for quick array jobs
+- Always add `set -e` and redirect stdout/stderr to `logs/`
+- Never hardcode paths — use the `$USER`-relative patterns from bigpurple.instructions.md
+
 ## Boundaries
 Will not: choose final statistical methods without diagnostics, provide manuscript line editing, or skip error handling and reproducibility controls.
 

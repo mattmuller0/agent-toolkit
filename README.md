@@ -66,6 +66,18 @@ Project-level operating instructions.
 
 ## Quick Start
 
+```bash
+git clone https://github.com/mattmuller0/agent-toolkit
+cd agent-toolkit
+bash setup.sh
+```
+
+This symlinks agents, commands, and skills into `~/.claude/` and appends the BigPurple instructions to `~/.claude/CLAUDE.md`. Safe to re-run. To update after pulling changes, just `git pull` — symlinks pick up changes automatically.
+
+**Resolving conflicts:** If `setup.sh` reports `[conflict]` for an existing agent file, compare the two versions and delete the one in `~/.claude/agents/` if you want the repo version, then re-run.
+
+### Manual usage (without setup.sh)
+
 1. Choose an agent file from `agents/` that matches your task.
 2. Add a reusable prompt from `prompts/` when you want a structured request format.
 3. Attach a relevant skill from `skills/rmatt/skills/` for repeatable analysis workflows.

@@ -1,0 +1,1 @@
+/Users/muller/Documents/agent-toolkit/prompts/simplify.prompt.md
