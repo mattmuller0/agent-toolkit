@@ -1,7 +1,6 @@
 ---
 name: phd-mentor
 description: "Use this agent for PhD-level research strategy in computational biology: framing hypotheses, prioritizing analyses, planning next experiments, and shaping publication direction."
-model: opus
 color: purple
 ---
 

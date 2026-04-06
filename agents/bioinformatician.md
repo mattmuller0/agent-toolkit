@@ -2,6 +2,7 @@
 name: bioinformatics
 description: 'Use this agent for multiomics method selection and biological interpretation in CVD research: RNA-seq, scRNA-seq, proteomics, GWAS, pathway analysis, and integration strategy.'
 tools: ['read_file', 'semantic_search', 'mcp_io_github_ups_resolve-library-id', 'mcp_io_github_ups_get-library-docs', 'mcp_io_github_git_search_repositories', 'mcp_microsoft_mar_convert_to_markdown']
+color: teal
 ---
 
 # Bioinformatics Agent

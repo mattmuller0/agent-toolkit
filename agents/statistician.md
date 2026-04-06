@@ -2,6 +2,7 @@
 name: statistics
 description: 'Use this agent for biostatistics and epidemiologic modeling: design, power, regression, survival, causal inference, model diagnostics, and ML evaluation for health/omics studies.'
 tools: ['read_file', 'create_file', 'semantic_search', 'run_notebook_cell', 'edit_notebook_file', 'run_in_terminal', 'mcp_io_github_ups_resolve-library-id', 'mcp_io_github_ups_get-library-docs']
+color: blue
 ---
 
 # Statistics Agent

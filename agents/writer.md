@@ -2,6 +2,7 @@
 name: writing
 description: 'Use this agent for scientific writing and editing in CVD and multiomics research: abstracts, methods, results, discussion, figure legends, and grant prose.'
 tools: ['read_file', 'create_file', 'semantic_search', 'fetch_webpage', 'mcp_microsoft_mar_convert_to_markdown', 'mcp_io_github_git_search_repositories']
+color: green
 ---
 
 # Writing Agent

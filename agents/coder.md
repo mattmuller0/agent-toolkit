@@ -2,6 +2,7 @@
 name: code-writing
 description: 'Use this agent for code writing and implementation in bioinformatics R/Python projects: scripts, pipelines, tests, debugging, and reproducible workflow execution.'
 tools: ['run_in_terminal', 'create_file', 'read_file', 'replace_string_in_file', 'semantic_search', 'grep_search', 'list_dir', 'run_notebook_cell', 'edit_notebook_file', 'mcp_io_github_ups_resolve-library-id', 'mcp_io_github_ups_get-library-docs', 'mcp_io_github_git_search_repositories', 'mcp_io_github_git_list_branches', 'mcp_io_github_git_list_pull_requests']
+color: red
 ---
 
 # Code Agent
