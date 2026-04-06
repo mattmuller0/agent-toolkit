@@ -73,8 +73,8 @@ fi
 echo ""
 
 # ── GitHub Copilot (.github/) ────────────────────────────────────────────────
-echo "GitHub Copilot → $REPO/.github/"
-GITHUB_DIR="$REPO/.github"
+echo "GitHub Copilot → $HOME/.github/"
+GITHUB_DIR="$HOME/.github"
 mkdir -p "$GITHUB_DIR/prompts" "$GITHUB_DIR/instructions"
 
 # copilot-instructions.md → BigPurple HPC instructions
