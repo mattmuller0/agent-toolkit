@@ -9,7 +9,7 @@ This guide defines the standard operating procedures for running analysis code o
 - **User Identity**: `$USER`
 - **Lab Base Paths**: `/gpfs/data/ruggleslab/$USER`
 - **Lab Base Paths**: `/gpfs/data/ischemialab/workspace/$USER`
-- **Lab Base Paths**: `/gpfs/data/ruggleslab/$USER`
+- **Lab Base Paths**: `/gpfs/data/bergerlab/$USER`
 
 ## Environment Configuration
 The environment is managed via LMOD modules and a centralized Conda installation. **Do not rely on default system paths.**

@@ -1,1 +1,0 @@
-/Users/muller/Documents/agent-toolkit/agents/bioinformatics.agent.md

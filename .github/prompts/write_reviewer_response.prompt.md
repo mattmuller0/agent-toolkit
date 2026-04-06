@@ -1,1 +1,0 @@
-/Users/muller/Documents/agent-toolkit/prompts/write_reviewer_response.prompt.md

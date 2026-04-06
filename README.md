@@ -72,7 +72,12 @@ cd agent-toolkit
 bash setup.sh
 ```
 
-This symlinks agents, commands, and skills into `~/.claude/` and appends the BigPurple instructions to `~/.claude/CLAUDE.md`. Safe to re-run. To update after pulling changes, just `git pull` — symlinks pick up changes automatically.
+This sets up both Claude and Copilot:
+
+- Claude: symlinks agents, commands, and skills into `~/.claude/` and appends BigPurple instructions to `~/.claude/CLAUDE.md`.
+- Copilot: symlinks `*.prompt.md`, `*.instructions.md`, and `*.agent.md` files into the VS Code user prompts folder, and symlinks skills into `~/.copilot/skills/`.
+
+Safe to re-run. To update after pulling changes, just `git pull` — symlinks pick up changes automatically.
 
 **Resolving conflicts:** If `setup.sh` reports `[conflict]` for an existing agent file, compare the two versions and delete the one in `~/.claude/agents/` if you want the repo version, then re-run.
 
