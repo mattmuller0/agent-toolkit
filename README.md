@@ -8,26 +8,29 @@ This repository is a lightweight toolkit for configuring AI coding and analysis 
 
 ```text
 agents/
-  bioinformatics.agent.md
+  bioinformatician.md
   code-reviewer.md
-  code.agent.md
+  coder.md
   phd-bioinformatics-mentor.md
-  statistics.agent.md
-  writing.agent.md
+  statistician.md
+  writer.md
 
 instructions/
-  bigpurple.instructions.md
+  bigpurple.md
+  project-organization.md
 
 prompts/
-  simplify.prompt.md
-  write_report.prompt.md
+  debug.md
+  simplify.md
+  write_report.md
+  write_reviewer_response.md
 
 skills/
   rmatt/
-    skills/
-      deseq-analysis/SKILL.md
-      enrichment-analysis/SKILL.md
-      hazard-ratios-table/SKILL.md
+    deseq-analysis/SKILL.md
+    enrichment-analysis/SKILL.md
+    hazard-ratios-table/SKILL.md
+    multiomics-integration/SKILL.md
 ```
 
 ## What Each Folder Contains
@@ -36,57 +39,82 @@ skills/
 
 Specialized agent profiles for common research tasks.
 
-- `bioinformatics.agent.md`: Method selection and biological interpretation for multiomics analyses.
-- `code.agent.md`: Implementation-focused coding agent for R/Python pipelines and debugging.
+- `bioinformatician.md`: Method selection and biological interpretation for multiomics analyses.
+- `coder.md`: Implementation-focused coding agent for R/Python pipelines and debugging.
 - `code-reviewer.md`: Post-change quality review agent (correctness, security, maintainability).
 - `phd-bioinformatics-mentor.md`: Senior research strategy mentor for PhD-level planning.
-- `statistics.agent.md`: Biostatistics and epidemiology modeling support.
-- `writing.agent.md`: Scientific writing and editing support for manuscripts and grants.
+- `statistician.md`: Biostatistics and epidemiology modeling support.
+- `writer.md`: Scientific writing and editing support for manuscripts and grants.
 
 ### `prompts/`
 
 Reusable task prompts.
 
-- `simplify.prompt.md`: Refactor and simplify code while preserving behavior.
-- `write_report.prompt.md`: Generate collaborator-friendly analysis summaries from workspace outputs.
+- `debug.md`: Structured debugging workflow prompt.
+- `simplify.md`: Refactor and simplify code while preserving behavior.
+- `write_report.md`: Generate collaborator-friendly analysis summaries from workspace outputs.
+- `write_reviewer_response.md`: Draft reviewer response letters in a consistent format.
 
-### `skills/rmatt/skills/`
+### `skills/rmatt/`
 
 Domain-specific procedural skills for `rmatt` workflows.
 
 - `deseq-analysis`: Differential expression workflows and expected outputs.
 - `enrichment-analysis`: GSEA and enrichment result generation patterns.
 - `hazard-ratios-table`: Cox model hazard ratio table generation and checks.
+- `multiomics-integration`: MOFA+/DIABLO-style multiomics integration workflows.
 
 ### `instructions/`
 
 Project-level operating instructions.
 
-- `bigpurple.instructions.md`: BigPurple HPC conventions, environment modules, interpreter paths, and SLURM templates.
+- `bigpurple.md`: BigPurple HPC conventions, environment modules, interpreter paths, and SLURM templates.
+- `project-organization.md`: Reproducible scientific project structure and documentation requirements.
 
 ## Quick Start
 
 ```bash
 git clone https://github.com/mattmuller0/agent-toolkit
 cd agent-toolkit
-bash setup.sh
 ```
 
-This sets up both Claude and Copilot:
+No installer script is required. You can use the files directly from this repository, or create symlinks for your local assistant setup.
 
-- Claude: symlinks agents, commands, and skills into `~/.claude/` and appends BigPurple instructions to `~/.claude/CLAUDE.md`.
-- Copilot: symlinks `*.prompt.md`, `*.instructions.md`, and `*.agent.md` files into the VS Code user prompts folder, and symlinks skills into `~/.copilot/skills/`.
+### Optional: link files for Copilot
 
-Safe to re-run. To update after pulling changes, just `git pull` — symlinks pick up changes automatically.
+```bash
+PROMPTS_DIR="${VSCODE_USER_PROMPTS_FOLDER:-$HOME/Library/Application Support/Code/User/prompts}"
+mkdir -p "$PROMPTS_DIR"
 
-**Resolving conflicts:** If `setup.sh` reports `[conflict]` for an existing agent file, compare the two versions and delete the one in `~/.claude/agents/` if you want the repo version, then re-run.
+ln -sf "$PWD"/agents/*.md "$PROMPTS_DIR"/
+ln -sf "$PWD"/prompts/*.md "$PROMPTS_DIR"/
+ln -sf "$PWD"/instructions/*.md "$PROMPTS_DIR"/
 
-### Manual usage (without setup.sh)
+for skill_dir in "$PWD"/skills/rmatt/*; do
+  skill_name="$(basename "$skill_dir")"
+  mkdir -p "$HOME/.copilot/skills/$skill_name"
+  ln -sf "$skill_dir/SKILL.md" "$HOME/.copilot/skills/$skill_name/SKILL.md"
+done
+```
+
+### Optional: link files for Claude
+
+```bash
+mkdir -p "$HOME/.claude/agents" "$HOME/.claude/prompts" "$HOME/.claude/instructions"
+
+ln -sf "$PWD"/agents/*.md "$HOME/.claude/agents"/
+ln -sf "$PWD"/prompts/*.md "$HOME/.claude/prompts"/
+ln -sf "$PWD"/instructions/*.md "$HOME/.claude/instructions"/
+```
+
+Safe to re-run. To update after pulling changes, run `git pull`; symlinked files will reflect the latest repo state.
+
+### Manual Usage
 
 1. Choose an agent file from `agents/` that matches your task.
 2. Add a reusable prompt from `prompts/` when you want a structured request format.
-3. Attach a relevant skill from `skills/rmatt/skills/` for repeatable analysis workflows.
-4. Follow `instructions/bigpurple.instructions.md` when running analyses on BigPurple HPC.
+3. Attach a relevant skill from `skills/rmatt/` for repeatable analysis workflows.
+4. Follow `instructions/bigpurple.md` when running analyses on BigPurple HPC.
 
 ## BigPurple HPC Notes
 
@@ -103,7 +131,7 @@ To add a new capability:
 
 1. Add a new agent profile in `agents/` with clear boundaries and handoff rules.
 2. Add prompt templates in `prompts/` for repeatable request styles.
-3. Add skill definitions under `skills/<namespace>/skills/<skill-name>/SKILL.md`.
+3. Add skill definitions under `skills/<namespace>/<skill-name>/SKILL.md`.
 4. Document any environment assumptions under `instructions/`.
 
 Keep files focused, explicit about scope, and consistent with existing frontmatter fields (`name`, `description`, `tools`, `model` where applicable).
