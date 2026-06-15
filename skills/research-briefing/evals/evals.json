@@ -1,0 +1,85 @@
+{
+  "skill_name": "research-briefing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Run my research briefing",
+      "expected_output": "A PDF file named research_briefing_YYYYMMDD.pdf containing two sections: Cardiovascular Research (8-10 papers) and Methodology Developments (5-7 papers), each with title, journal info, 2-3 sentence summary, and DOI link.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "PDF file is created in the outputs directory",
+          "type": "file_exists"
+        },
+        {
+          "text": "PDF has at least 4 pages",
+          "type": "qualitative"
+        },
+        {
+          "text": "Both Section I and Section II are present with at least 3 papers each",
+          "type": "qualitative"
+        },
+        {
+          "text": "Every paper entry includes a DOI link",
+          "type": "qualitative"
+        },
+        {
+          "text": "Papers are from 2025-2026 (within ~4 months of current date)",
+          "type": "qualitative"
+        },
+        {
+          "text": "Summaries are 2-3 sentences written in technical language suitable for a PhD audience",
+          "type": "qualitative"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Can you pull together a briefing on recent cardio papers? Especially interested in anything using single-cell or spatial transcriptomics, and also any new ML methods papers from JACC or Circulation",
+      "expected_output": "A PDF briefing that specifically prioritizes single-cell/spatial transcriptomics and ML methodology papers in JACC/Circulation, with appropriate curation emphasis reflecting the user's stated interests.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "PDF is generated successfully",
+          "type": "file_exists"
+        },
+        {
+          "text": "At least one paper explicitly involves single-cell RNA-seq, scATAC-seq, or spatial transcriptomics",
+          "type": "qualitative"
+        },
+        {
+          "text": "At least one methodology paper from JACC or Circulation family involves ML or deep learning",
+          "type": "qualitative"
+        },
+        {
+          "text": "Summaries specifically highlight relevance to scRNA-seq or ML where applicable",
+          "type": "qualitative"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "What's new in cardiovascular genomics this year? Give me a paper digest as a PDF",
+      "expected_output": "A PDF organized similarly to the standard briefing, with a focus on genomics/multi-omics papers (GWAS, proteomics, transcriptomics) in cardiovascular research. Should cover 2026 publications.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "PDF is generated and saved to outputs folder",
+          "type": "file_exists"
+        },
+        {
+          "text": "At least 3 papers involve genomics, multi-omics, or proteomics approaches",
+          "type": "qualitative"
+        },
+        {
+          "text": "Papers are recent (2025-2026)",
+          "type": "qualitative"
+        },
+        {
+          "text": "Both sections of the PDF are populated",
+          "type": "qualitative"
+        }
+      ]
+    }
+  ]
+}
