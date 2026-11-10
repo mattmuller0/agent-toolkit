@@ -26,11 +26,16 @@ prompts/
   write_reviewer_response.md
 
 skills/
-  rmatt/
-    deseq-analysis/SKILL.md
-    enrichment-analysis/SKILL.md
-    hazard-ratios-table/SKILL.md
-    multiomics-integration/SKILL.md
+  debug/SKILL.md
+  multiomics-integration/SKILL.md
+  research-briefing/SKILL.md
+  rmatt-deseq-analysis/SKILL.md
+  rmatt-enrichment-analysis/SKILL.md
+  rmatt-hazard-ratios-table/SKILL.md
+  sbatch-analysis/SKILL.md
+  simplify/SKILL.md
+  write-report/SKILL.md
+  write-reviewer-response/SKILL.md
 ```
 
 ## What Each Folder Contains
@@ -55,14 +60,17 @@ Reusable task prompts.
 - `write_report.md`: Generate collaborator-friendly analysis summaries from workspace outputs.
 - `write_reviewer_response.md`: Draft reviewer response letters in a consistent format.
 
-### `skills/rmatt/`
+### `skills/`
 
-Domain-specific procedural skills for `rmatt` workflows.
+Procedural skills, one folder per skill (flat layout, each with a `SKILL.md`). This folder is the source of truth; `~/.claude/skills` holds symlinks into it.
 
-- `deseq-analysis`: Differential expression workflows and expected outputs.
-- `enrichment-analysis`: GSEA and enrichment result generation patterns.
-- `hazard-ratios-table`: Cox model hazard ratio table generation and checks.
+- `rmatt-deseq-analysis`: Differential expression workflows and expected outputs.
+- `rmatt-enrichment-analysis`: GSEA and enrichment result generation patterns.
+- `rmatt-hazard-ratios-table`: Cox model hazard ratio table generation and checks.
 - `multiomics-integration`: MOFA+/DIABLO-style multiomics integration workflows.
+- `research-briefing`: Curated PDF digest of recent cardiovascular and computational-biology papers (PubMed-based; includes references, scripts, and evals).
+- `sbatch-analysis`: Submit R/Python scripts to SLURM on NYU BigPurple via sbatch.
+- `debug`, `simplify`, `write-report`, `write-reviewer-response`: Skill versions of the matching prompts.
 
 ### `instructions/`
 
@@ -90,10 +98,10 @@ ln -sf "$PWD"/agents/*.md "$PROMPTS_DIR"/
 ln -sf "$PWD"/prompts/*.md "$PROMPTS_DIR"/
 ln -sf "$PWD"/instructions/*.md "$PROMPTS_DIR"/
 
-for skill_dir in "$PWD"/skills/rmatt/*; do
+for skill_dir in "$PWD"/skills/*/; do
   skill_name="$(basename "$skill_dir")"
   mkdir -p "$HOME/.copilot/skills/$skill_name"
-  ln -sf "$skill_dir/SKILL.md" "$HOME/.copilot/skills/$skill_name/SKILL.md"
+  ln -sf "${skill_dir%/}/SKILL.md" "$HOME/.copilot/skills/$skill_name/SKILL.md"
 done
 ```
 
@@ -105,6 +113,13 @@ mkdir -p "$HOME/.claude/agents" "$HOME/.claude/prompts" "$HOME/.claude/instructi
 ln -sf "$PWD"/agents/*.md "$HOME/.claude/agents"/
 ln -sf "$PWD"/prompts/*.md "$HOME/.claude/prompts"/
 ln -sf "$PWD"/instructions/*.md "$HOME/.claude/instructions"/
+
+# Skills: symlink whole skill folders (the "rmatt-" prefix is dropped from the link name)
+mkdir -p "$HOME/.claude/skills"
+for skill_dir in "$PWD"/skills/*/; do
+  name="$(basename "$skill_dir")"
+  ln -sfn "${skill_dir%/}" "$HOME/.claude/skills/${name#rmatt-}"
+done
 ```
 
 Safe to re-run. To update after pulling changes, run `git pull`; symlinked files will reflect the latest repo state.
@@ -113,7 +128,7 @@ Safe to re-run. To update after pulling changes, run `git pull`; symlinked files
 
 1. Choose an agent file from `agents/` that matches your task.
 2. Add a reusable prompt from `prompts/` when you want a structured request format.
-3. Attach a relevant skill from `skills/rmatt/` for repeatable analysis workflows.
+3. Attach a relevant skill from `skills/` for repeatable analysis workflows.
 4. Follow `instructions/bigpurple.md` when running analyses on BigPurple HPC.
 
 ## BigPurple HPC Notes
@@ -131,7 +146,7 @@ To add a new capability:
 
 1. Add a new agent profile in `agents/` with clear boundaries and handoff rules.
 2. Add prompt templates in `prompts/` for repeatable request styles.
-3. Add skill definitions under `skills/<namespace>/<skill-name>/SKILL.md`.
+3. Add skill definitions under `skills/<skill-name>/SKILL.md`, then re-run the Claude link loop above.
 4. Document any environment assumptions under `instructions/`.
 
 Keep files focused, explicit about scope, and consistent with existing frontmatter fields (`name`, `description`, `tools`, `model` where applicable).
